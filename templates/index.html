@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Using a public high-quality bank/finance image */
+            background: url('https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Dark overlay to make the image look professional and the form pop */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        h2 { color: #2c3e50; text-align: center; margin-bottom: 20px; }
+        
+        label { font-weight: bold; font-size: 0.9em; color: #34495e; }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 18px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box; /* Important for alignment */
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background 0.3s;
+        }
+
+        button:hover { background: #1a252f; }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            background: #ecf0f1;
+        }
+
+        .risk-high { color: #c0392b; font-weight: bold; }
+        .risk-low { color: #27ae60; font-weight: bold; }
+    </style>
+</head>
+<body>
+    [Image of a modern bank building interior with professional lighting]
+    <div class="container">
+        <h2>Loan Risk Analysis</h2>
+        <form action="/predict" method="post">
+            <label>Annual Income</label>
+            <input type="number" name="income" placeholder="e.g. 50000" required>
+
+            <label>DTI Ratio</label>
+            <input type="number" step="0.01" name="debt_to_income" placeholder="e.g. 0.35" required>
+
+            <label>Savings Balance</label>
+            <input type="number" name="savings" placeholder="e.g. 15000" required>
+
+            <label>Credit Score</label>
+            <input type="number" name="credit_score" placeholder="e.g. 720" required>
+
+            <label>Age</label>
+            <input type="number" name="age" required>
+
+            <label>Years Employed</label>
+            <input type="number" step="0.1" name="employment_years" required>
+
+            <label>Has Credit Card?</label>
+            <select name="has_credit_card">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Account Signup Year</label>
+            <input type="number" name="signup_year" value="2024" required>
+
+            <label>Home Ownership</label>
+            <select name="home_ownership">
+                <option value="RENT">Rent</option>
+                <option value="OWN">Own</option>
+                <option value="MORTGAGE">Mortgage</option>
+            </select>
+
+            <label>Education</label>
+            <select name="education">
+                <option value="HS">High School</option>
+                <option value="Bachelors">Bachelors</option>
+                <option value="Masters">Masters</option>
+                <option value="PhD">PhD</option>
+            </select>
+
+            <button type="submit">Run Prediction</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result-box">
+            <h3 class="{{ 'risk-high' if 'High' in prediction_text else 'risk-low' }}">
+                {{ prediction_text }}
+            </h3>
+            <p>{{ prob_text }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
