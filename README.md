@@ -9,19 +9,6 @@
 3. [GitCLI](https://git-scm.com/install/)
 
 
-# creat a new environment 
-'''
-conda create -p venv python==3.11 -y
-
-'''
-
-# intalling required libraries
-'''
-
-pip install -r requirements.txt
-
-'''
-
 
 
 # Loan Default Prediction Web Application 🚀
@@ -71,12 +58,15 @@ cd Loan_Prediction
 # Create a new Environment for python:
 '''
 python -m venv venv
+
 source venv/Scripts/activate  # On Windows
 '''
 
 # creat a new environment for anaconda 
 '''
 conda create -p venv python==3.11 -y
+
+conda activate venv/ #on windows
 '''
 # Install Dependencies:
 '''
