@@ -35,7 +35,7 @@ End-to-End Pipeline: Data cleaning, exploratory data analysis (EDA), feature eng
 
 Optimized Preprocessing: Uses Scikit-Learn ColumnTransformer for automated scaling and categorical encoding.
 
-High Accuracy: Achieving 96% accuracy on test data using a fine-tuned XGBoost model.
+High Accuracy: Achieving 95% accuracy on test data using a fine-tuned XGBoost model.
 
 Web Deployment: A functional UI built with Flask that allows users to input data and get real-time risk predictions.
 
